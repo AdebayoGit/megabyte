@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:megabyte/views/about_us.dart';
+import 'package:megabyte/views/become_an_affliate.dart';
 import 'package:megabyte/views/home_page.dart';
 import 'package:megabyte/views/personal_details_page.dart';
-import 'package:megabyte/views/sign_up.dart';
+import 'package:megabyte/views/sign_in.dart';
+import 'package:megabyte/views/vip_packages_page.dart';
+import 'package:megabyte/views/wallet.dart';
 
 import 'colors.dart';
 
@@ -111,7 +115,7 @@ class NavigationDrawerWidget extends StatelessWidget {
         break;
       case 1:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => PersonalDetailsPage(),
+          builder: (context) => AdvancedSliverAppBar(),
         ));
         break;
       case 2:
@@ -121,17 +125,17 @@ class NavigationDrawerWidget extends StatelessWidget {
         break;
       case 3:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => const PersonalDetailsPage(),
+          builder: (context) => const VIPPackagesPage(),
         ));
         break;
       case 4:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => PersonalDetailsPage(),
+          builder: (context) => const Affiliates(),
         ));
         break;
       case 5:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => const PersonalDetailsPage(),
+          builder: (context) => const AboutUs(),
         ));
         break;
       case 6:
@@ -148,7 +152,7 @@ class NavigationDrawerWidget extends StatelessWidget {
         break;
       case 8:
         Navigator.of(context)
-            .push(MaterialPageRoute(builder: (context) => const SignUp()));
+            .push(MaterialPageRoute(builder: (context) => SignIn()));
         break;
     }
   }

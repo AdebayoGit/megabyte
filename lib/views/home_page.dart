@@ -3,6 +3,9 @@ import 'package:megabyte/components/colors.dart';
 import 'package:megabyte/components/games_card.dart';
 import 'package:megabyte/components/main_app_bar.dart';
 import 'package:megabyte/components/navigation_drawer.dart';
+import 'package:megabyte/views/results_page.dart';
+import 'package:megabyte/views/tickets_page.dart';
+import 'package:megabyte/views/transactions_page.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class HomePage extends StatefulWidget {
@@ -18,9 +21,9 @@ class _HomePageState extends State<HomePage> {
   int _selectedIndex = 0;
   static const List<Widget> _pages = <Widget>[
     HomePageWidget(),
-    // ResultsPage(),
-    // TicketsPage(),
-    // TransactionsPage()
+    ResultsPage(),
+    TicketsPage(),
+    TransactionsPage()
   ];
 
   // static const List<Text> _appBarTitles = <Text>[
