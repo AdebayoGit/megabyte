@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:megabyte/views/about_us.dart';
 import 'package:megabyte/views/become_an_affliate.dart';
+import 'package:megabyte/views/faq_page.dart';
 import 'package:megabyte/views/home_page.dart';
 import 'package:megabyte/views/personal_details_page.dart';
 import 'package:megabyte/views/sign_in.dart';
@@ -140,7 +141,7 @@ class NavigationDrawerWidget extends StatelessWidget {
         break;
       case 6:
         Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => const PersonalDetailsPage(),
+          builder: (context) => const FAQPage(),
         ));
         break;
       case 7:
