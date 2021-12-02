@@ -2,11 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter/widgets.dart';
 import 'package:megabyte/components/colors.dart';
-import 'package:megabyte/components/main_app_bar.dart';
-import 'package:megabyte/components/navigation_drawer.dart';
 import 'package:megabyte/components/profile_widget.dart';
 import 'package:megabyte/models/user.dart';
 import 'package:megabyte/models/user_preferences.dart';
+import 'package:megabyte/views/main_app_bar.dart';
+import 'package:megabyte/views/navigation_drawer.dart';
 
 class PersonalDetailsPage extends StatefulWidget {
   const PersonalDetailsPage({Key? key}) : super(key: key);
@@ -42,7 +42,9 @@ class _PersonalDetailsPageState extends State<PersonalDetailsPage> {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: NavigationDrawerWidget(),
-      appBar: MainAppBar(),
+      appBar: MainAppBar(
+        context: context,
+      ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: ListView(

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:megabyte/components/colors.dart';
-import 'package:megabyte/components/main_app_bar.dart';
-import 'package:megabyte/components/navigation_drawer.dart';
+import 'package:megabyte/views/main_app_bar.dart';
+import 'package:megabyte/views/navigation_drawer.dart';
 
 class VIPPackagesPage extends StatelessWidget {
   const VIPPackagesPage({Key? key}) : super(key: key);
@@ -9,7 +9,9 @@ class VIPPackagesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) => Scaffold(
         drawer: NavigationDrawerWidget(),
-        appBar: MainAppBar(),
+        appBar: MainAppBar(
+          context: context,
+        ),
         body: Column(
           children: [
             const Padding(

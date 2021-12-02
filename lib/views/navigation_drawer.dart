@@ -9,10 +9,12 @@ import 'package:megabyte/views/sign_in.dart';
 import 'package:megabyte/views/vip_packages_page.dart';
 import 'package:megabyte/views/wallet.dart';
 
-import 'colors.dart';
+import '../components/colors.dart';
 
 class NavigationDrawerWidget extends StatelessWidget {
   final padding = const EdgeInsets.symmetric(horizontal: 10);
+
+  const NavigationDrawerWidget({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Drawer(
@@ -32,12 +34,6 @@ class NavigationDrawerWidget extends StatelessWidget {
               pageTitle: 'Wallet',
               icon: Icons.account_balance_wallet,
               onClicked: () => _selectedItem(context, 1),
-            ),
-            const SizedBox(height: 16),
-            buildDrawerMenuItem(
-              pageTitle: 'Transactions',
-              icon: Icons.sell,
-              onClicked: () => _selectedItem(context, 2),
             ),
             const SizedBox(height: 16),
             buildDrawerMenuItem(
@@ -117,11 +113,6 @@ class NavigationDrawerWidget extends StatelessWidget {
       case 1:
         Navigator.of(context).push(MaterialPageRoute(
           builder: (context) => AdvancedSliverAppBar(),
-        ));
-        break;
-      case 2:
-        Navigator.of(context).push(MaterialPageRoute(
-          builder: (context) => PersonalDetailsPage(),
         ));
         break;
       case 3:

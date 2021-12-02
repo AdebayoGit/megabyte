@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:megabyte/components/colors.dart';
-import 'package:megabyte/components/main_app_bar.dart';
-import 'package:megabyte/components/navigation_drawer.dart';
 import 'package:megabyte/models/faq.dart';
 import 'package:megabyte/models/faq_data.dart';
+import 'package:megabyte/views/main_app_bar.dart';
+import 'package:megabyte/views/navigation_drawer.dart';
 
 List<FaqItem> gettingStartedFaq = FaqData().gettingStartedFaq;
 List<FaqItem> generalFaq = FaqData().generalFaq;
@@ -19,7 +19,9 @@ class FAQPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: NavigationDrawerWidget(),
-      appBar: MainAppBar(),
+      appBar: MainAppBar(
+        context: context,
+      ),
       body: const FaqWidget(),
     );
   }

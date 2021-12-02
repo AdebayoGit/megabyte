@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:megabyte/components/colors.dart';
 import 'package:megabyte/components/games_card.dart';
-import 'package:megabyte/components/main_app_bar.dart';
-import 'package:megabyte/components/navigation_drawer.dart';
+import 'package:megabyte/views/main_app_bar.dart';
+import 'package:megabyte/views/navigation_drawer.dart';
 import 'package:megabyte/views/results_page.dart';
 import 'package:megabyte/views/tickets_page.dart';
-import 'package:megabyte/views/transactions_page.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class HomePage extends StatefulWidget {
@@ -23,21 +22,15 @@ class _HomePageState extends State<HomePage> {
     HomePageWidget(),
     ResultsPage(),
     TicketsPage(),
-    TransactionsPage()
   ];
-
-  // static const List<Text> _appBarTitles = <Text>[
-  //   Text('Home'),
-  //   Text('Results'),
-  //   Text('Tickets'),
-  //   Text('Transactions')
-  // ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       drawer: NavigationDrawerWidget(),
-      appBar: MainAppBar(),
+      appBar: MainAppBar(
+        context: context,
+      ),
       body: _pages.elementAt(_selectedIndex),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {},
@@ -64,10 +57,6 @@ class _HomePageState extends State<HomePage> {
             BottomNavigationBarItem(
               icon: Icon(Icons.local_activity),
               label: 'Tickets',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.account_balance_wallet),
-              label: 'Transactions',
             ),
           ],
           currentIndex: _selectedIndex,
@@ -112,11 +101,12 @@ class _HomePageWidgetState extends State<HomePageWidget> {
         child: Column(
           children: [
             Card(
-              margin: EdgeInsets.all(10),
+              margin: const EdgeInsets.all(10.0),
               color: lightGreen.withOpacity(0.7),
               elevation: 5.0,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15)),
+                borderRadius: BorderRadius.circular(15),
+              ),
               child: Row(
                 children: [
                   Expanded(
@@ -126,7 +116,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       decoration: BoxDecoration(
                         color: yellow,
                         image: const DecorationImage(
-                          image: AssetImage('images/game_image_01.png'),
+                          image: AssetImage('assets/images/game_image_01.png'),
                         ),
                         borderRadius: BorderRadius.circular(15.0),
                       ),
@@ -238,7 +228,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         radius: 50.0,
                         foregroundColor: yellow,
                         backgroundImage:
-                            AssetImage('images/choose_numbers_01.png'),
+                            AssetImage('assets/images/choose_numbers_01.png'),
                       ),
                       Text(
                         '1. Choose Number',
@@ -252,7 +242,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         radius: 50.0,
                         backgroundColor: yellow,
                         backgroundImage:
-                            AssetImage('images/buy_tickets_02.png'),
+                            AssetImage('assets/images/buy_tickets_02.png'),
                       ),
                       Text(
                         '2. Buy Ticket',
@@ -272,7 +262,8 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                     children: const [
                       CircleAvatar(
                         radius: 50.0,
-                        backgroundImage: AssetImage('images/the_draw_03.png'),
+                        backgroundImage:
+                            AssetImage('assets/images/the_draw_03.png'),
                       ),
                       Text(
                         '3. Check the Draw',
@@ -285,7 +276,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                       CircleAvatar(
                         radius: 50.0,
                         foregroundColor: yellow,
-                        backgroundImage: AssetImage('images/win_04.png'),
+                        backgroundImage: AssetImage('assets/images/win_04.png'),
                       ),
                       Text(
                         '4. Win',

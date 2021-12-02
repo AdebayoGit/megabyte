@@ -49,6 +49,10 @@ flutter:
     - assets/images/vip_gold.png
     - assets/images/vip_silver.png
     - assets/images/vip_bronze.png
+    - assets/images/choose_numbers_01.png
+    - assets/images/buy_tickets_02.png
+    - assets/images/the_draw_03.png
+    - assets/images/win_04.png
 
   # To add custom fonts to your application, add a fonts section here,
   # in this "flutter" section. Each entry in this list should have a

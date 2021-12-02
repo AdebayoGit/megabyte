@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:megabyte/components/ticket.dart';
 
 class GamesCard extends StatelessWidget {
   const GamesCard({Key? key}) : super(key: key);
@@ -20,12 +21,19 @@ class GamesCard extends StatelessWidget {
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: const [
-              Padding(
+            children: [
+              const Padding(
                 padding: EdgeInsets.all(12.0),
                 child: Icon(Icons.local_activity),
               ),
-              Icon(Icons.more_vert)
+              InkWell(
+                child: const Icon(Icons.more_vert),
+                onTap: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                    builder: (context) => const Ticket(),
+                  ));
+                },
+              )
             ],
           ),
           Row(
