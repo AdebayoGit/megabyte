@@ -183,7 +183,7 @@
     },
     {
       "name": "path_provider_android",
-      "rootUri": "file:///Users/decagon/development/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_android-2.0.8",
+      "rootUri": "file:///Users/decagon/development/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_android-2.0.9",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
@@ -297,7 +297,19 @@
     },
     {
       "name": "url_launcher",
-      "rootUri": "file:///Users/decagon/development/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-6.0.13",
+      "rootUri": "file:///Users/decagon/development/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-6.0.17",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
+      "name": "url_launcher_android",
+      "rootUri": "file:///Users/decagon/development/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_android-6.0.13",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
+      "name": "url_launcher_ios",
+      "rootUri": "file:///Users/decagon/development/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_ios-6.0.13",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
@@ -321,7 +333,7 @@
     },
     {
       "name": "url_launcher_web",
-      "rootUri": "file:///Users/decagon/development/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_web-2.0.4",
+      "rootUri": "file:///Users/decagon/development/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_web-2.0.5",
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -339,7 +351,7 @@
     },
     {
       "name": "win32",
-      "rootUri": "file:///Users/decagon/development/flutter/.pub-cache/hosted/pub.dartlang.org/win32-2.3.0",
+      "rootUri": "file:///Users/decagon/development/flutter/.pub-cache/hosted/pub.dartlang.org/win32-2.3.1",
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
@@ -368,7 +380,7 @@
       "languageVersion": "2.12"
     }
   ],
-  "generated": "2021-12-02T11:41:38.289719Z",
+  "generated": "2021-12-02T14:03:33.242361Z",
   "generator": "pub",
   "generatorVersion": "2.14.3"
 }
