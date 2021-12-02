@@ -7,6 +7,5 @@ class Helpers{
     NumberFormat.simpleCurrency(locale: Platform.localeName, name: 'NGN');
     return format.currencySymbol;
   }
-
-
 }
+

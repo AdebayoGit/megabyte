@@ -1,36 +1,36 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:megabyte/models/numbers.dart';
-import 'package:megabyte/views/about_us.dart';
-import 'package:megabyte/views/become_an_affliate.dart';
-import 'package:megabyte/views/check_out.dart';
-import 'package:megabyte/views/recover_password.dart';
-import 'package:megabyte/views/sign_in.dart';
-import 'package:megabyte/views/sign_up.dart';
-import 'package:megabyte/views/wallet.dart';
+import 'package:megabyte/services/color_util.dart';
+import 'package:megabyte/views/home_page.dart';
 import 'package:provider/provider.dart';
 
-import 'components/ticket.dart';
+import 'components/colors.dart';
 
 void main() {
-  runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const MegaMillionsApp());
 }
 
-class MyApp extends StatelessWidget {
-  const MyApp({Key? key}) : super(key: key);
+class MegaMillionsApp extends StatelessWidget {
+  const MegaMillionsApp({Key? key}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp]);
     return ChangeNotifierProvider<TicketNumbers>(
       create: (context) => TicketNumbers(),
       child: MaterialApp(
+        debugShowCheckedModeBanner: false,
         title: 'Mega Millions',
-        theme: ThemeData(
-          primarySwatch: Colors.green,
-          primaryColor: const Color(0xFF1A271F),
-        ),
-        home: AdvancedSliverAppBar(),
+        theme: ThemeData.dark().copyWith(
+            colorScheme: ColorScheme.fromSwatch(
+              primarySwatch: generateMaterialColor(seaGreen),
+            ).copyWith(
+              secondary: generateMaterialColor(yellow),
+            ),
+            scaffoldBackgroundColor: generateMaterialColor(seaGreen)),
+        home: const HomePage(title: 'Mega Millions'),
       ),
     );
   }
 }
-
-

@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:megabyte/components/auth_components.dart';
 import 'package:megabyte/services/validator.dart';
+import 'package:megabyte/views/home_page.dart';
 import 'package:megabyte/views/recover_password.dart';
 import 'package:megabyte/views/sign_up.dart';
 
@@ -34,15 +35,15 @@ class SignIn extends StatelessWidget {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         AuthTextField(
-                            controller: _email,
-                            textInputType: TextInputType.emailAddress,
-                            hintText: 'Email eg. john@doe.com',
-                            validator: Validator.emailValidator,
-                            icon: Icons.mail_outlined,
+                          controller: _email,
+                          textInputType: TextInputType.emailAddress,
+                          hintText: 'Email eg. john@doe.com',
+                          validator: Validator.emailValidator,
+                          icon: Icons.mail_outlined,
                         ),
                         PassTextField(
-                            validator: Validator.passwordValidator,
-                            controller: _password,
+                          validator: Validator.passwordValidator,
+                          controller: _password,
                         ),
                         Container(
                           alignment: Alignment.centerRight,
@@ -65,16 +66,23 @@ class SignIn extends StatelessWidget {
                           ),
                         ),
                         Button(
-                            title: 'SIGN IN',
-                            press: (){
-                              showDialog(
-                                  context: context,
-                                  barrierDismissible: false,
-                                  builder: (context){
-                                    return const ProgressDialog(status: 'Please Wait...',);
-                                  });
-                            },
-                            color: Colors.yellow,
+                          title: 'SIGN IN',
+                          press: () {
+                            showDialog(
+                                context: context,
+                                barrierDismissible: false,
+                                builder: (context) {
+                                  return const ProgressDialog(
+                                    status: 'Please Wait...',
+                                  );
+                                });
+                            Navigator.of(context).push(
+                              createRoute(
+                                HomePage(title: 'Home'),
+                              ),
+                            );
+                          },
+                          color: Colors.yellow,
                         ),
                         AlreadyHaveAnAccountCheck(
                           press: () {
