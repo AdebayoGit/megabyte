@@ -34,8 +34,14 @@ class _HomePageState extends State<HomePage> {
       body: _pages.elementAt(_selectedIndex),
       floatingActionButton: FloatingActionButton.extended(
         onPressed: () {},
-        label: const Text('Chat With Us'),
-        icon: const Icon(Icons.support),
+        label: const Text(
+          'Chat With Us',
+          style: TextStyle(color: seaGreen),
+        ),
+        icon: const Icon(
+          Icons.support,
+          color: seaGreen,
+        ),
       ),
       bottomNavigationBar: Theme(
         data: Theme.of(context).copyWith(
@@ -171,7 +177,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
               ),
             ),
             SizedBox(
-              height: 370,
+              height: 390,
               child: GridView.builder(
                   padding: const EdgeInsets.only(left: 10.0),
                   scrollDirection: Axis.horizontal,

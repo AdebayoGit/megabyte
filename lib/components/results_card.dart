@@ -23,7 +23,7 @@ class ResultsCard extends StatelessWidget {
               decoration: const BoxDecoration(
                 color: yellow,
                 image: DecorationImage(
-                  image: AssetImage('images/game_image_01.png'),
+                  image: AssetImage('assets/images/game_image_01.png'),
                 ),
                 borderRadius:
                     BorderRadius.horizontal(left: Radius.circular(12)),
