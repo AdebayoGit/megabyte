@@ -106,13 +106,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       child: SingleChildScrollView(
         child: Column(
           children: [
-            Card(
-              margin: const EdgeInsets.all(10.0),
-              color: lightGreen.withOpacity(0.7),
-              elevation: 5.0,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15),
-              ),
+            Container(
+              margin:
+                  const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10),
+              // elevation: 20.0,
+              decoration: BoxDecoration(
+                  //color: lightGreen,
+                  border: Border.all(
+                    color: Colors.yellow,
+                  ),
+                  borderRadius: BorderRadius.circular(16.5)),
               child: Row(
                 children: [
                   Expanded(
