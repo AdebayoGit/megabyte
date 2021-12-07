@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:megabyte/models/numbers.dart';
 import 'package:megabyte/services/color_util.dart';
 import 'package:megabyte/views/home_page.dart';
+import 'package:megabyte/views/splash_screen.dart';
 import 'package:provider/provider.dart';
 
 import 'components/colors.dart';
@@ -29,7 +30,7 @@ class MegaMillionsApp extends StatelessWidget {
               secondary: generateMaterialColor(yellow),
             ),
             scaffoldBackgroundColor: generateMaterialColor(seaGreen)),
-        home: const HomePage(title: 'Mega Millions'),
+        home: SplashScreen(),
       ),
     );
   }
