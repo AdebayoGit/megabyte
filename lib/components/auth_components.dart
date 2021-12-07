@@ -71,7 +71,6 @@ class _AuthCheckBoxState extends State<AuthCheckBox> {
   }
 }
 
-
 class PassTextField extends StatefulWidget {
   final String? Function(String?)? validator;
   final TextEditingController controller;
@@ -236,8 +235,9 @@ class AlreadyHaveAnAccountCheck extends StatelessWidget {
             child: Text(
               login ? "Sign Up" : "Sign In",
               style: const TextStyle(
-                fontWeight: FontWeight.bold,
-                fontSize: 15,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 15,
+                  color: Colors.yellow,
               ),
             ),
           ),
@@ -248,16 +248,13 @@ class AlreadyHaveAnAccountCheck extends StatelessWidget {
 }
 
 class ProgressDialog extends StatelessWidget {
-
   final String status;
   const ProgressDialog({required this.status, Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Dialog(
-      shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(10.0)
-      ),
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10.0)),
       backgroundColor: Colors.transparent,
       child: Container(
         margin: const EdgeInsets.all(16.0),
@@ -265,17 +262,24 @@ class ProgressDialog extends StatelessWidget {
         decoration: BoxDecoration(
             color: const Color(0xFF1A271F),
             borderRadius: BorderRadius.circular(0),
-            border: Border.all(color: Colors.yellow, width: 2)
-        ),
+            border: Border.all(color: Colors.yellow, width: 2)),
         child: Padding(
           padding: const EdgeInsets.all(16),
           child: Row(
             children: <Widget>[
-              const SizedBox(width: 5,),
-
-              const CircularProgressIndicator(valueColor: AlwaysStoppedAnimation<Color>(Colors.yellow),),
-              const SizedBox(width: 25.0,),
-              Text(status, style: const TextStyle(fontSize: 15, color: Colors.white),),
+              const SizedBox(
+                width: 5,
+              ),
+              const CircularProgressIndicator(
+                valueColor: AlwaysStoppedAnimation<Color>(Colors.yellow),
+              ),
+              const SizedBox(
+                width: 25.0,
+              ),
+              Text(
+                status,
+                style: const TextStyle(fontSize: 15, color: Colors.white),
+              ),
             ],
           ),
         ),
@@ -283,8 +287,6 @@ class ProgressDialog extends StatelessWidget {
     );
   }
 }
-
-
 
 Route createRoute(page) {
   return PageRouteBuilder(

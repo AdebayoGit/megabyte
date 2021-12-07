@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:megabyte/components/auth_components.dart';
@@ -6,10 +8,16 @@ import 'package:megabyte/views/home_page.dart';
 import 'package:megabyte/views/recover_password.dart';
 import 'package:megabyte/views/sign_up.dart';
 
-class SignIn extends StatelessWidget {
+class SignIn extends StatefulWidget {
   SignIn({Key? key}) : super(key: key);
 
+  @override
+  State<SignIn> createState() => _SignInState();
+}
+
+class _SignInState extends State<SignIn> {
   final TextEditingController _email = TextEditingController();
+
   final TextEditingController _password = TextEditingController();
 
   @override
@@ -60,27 +68,18 @@ class SignIn extends StatelessWidget {
                                 ),
                               );
                             },
-                            child: const Text(
+                            child: Text(
                               'Forgot Password?',
+                              style: TextStyle(
+                                color: Colors.yellow
+                              ),
                             ),
                           ),
                         ),
                         Button(
                           title: 'SIGN IN',
                           press: () {
-                            showDialog(
-                                context: context,
-                                barrierDismissible: false,
-                                builder: (context) {
-                                  return const ProgressDialog(
-                                    status: 'Please Wait...',
-                                  );
-                                });
-                            Navigator.of(context).push(
-                              createRoute(
-                                HomePage(title: 'Home'),
-                              ),
-                            );
+                            gotoScreen();
                           },
                           color: Colors.yellow,
                         ),
@@ -103,5 +102,20 @@ class SignIn extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  gotoScreen(){
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context){
+          return const ProgressDialog(status: 'Please Wait...',);
+        });
+    return Timer(const Duration(seconds: 5), () => Navigator.of(context).push(
+      createRoute(
+        HomePage(title: 'Home'),
+      ),
+    ));
+
   }
 }

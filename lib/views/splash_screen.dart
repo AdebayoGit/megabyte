@@ -3,6 +3,8 @@ import 'dart:async';
 import 'package:flutter/material.dart';
 
 import 'package:flutter_spinkit/flutter_spinkit.dart';
+import 'package:megabyte/components/auth_components.dart';
+import 'package:megabyte/views/onboarding_screen.dart';
 import 'package:megabyte/views/sign_in.dart';
 
 
@@ -18,7 +20,11 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    Timer(const Duration(seconds: 5), () => SignIn());
+    Timer(const Duration(seconds: 5), () => Navigator.of(context).push(
+      createRoute(
+        OnBoardingPage(),
+      ),
+    ));
   }
   @override
   Widget build(BuildContext context) {
@@ -38,7 +44,7 @@ class _SplashScreenState extends State<SplashScreen> {
               ),
               const SpinKitFoldingCube(
                 color: const Color(0xFFFFC61F),
-                size: 50.0,
+                size: 30.0,
               ),
             ],
           ),
