@@ -54,8 +54,9 @@ class _TicketState extends State<Ticket> {
             ),
             itemCount: num,
             itemBuilder: (BuildContext context, int index) {
-              tick.ticket.add({});
-              return Stack(children: [
+              return Stack(
+                  key: UniqueKey(),
+                  children: [
                 Container(),
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
@@ -81,9 +82,7 @@ class _TicketState extends State<Ticket> {
                           ),
                           IconButton(
                             onPressed: () {
-                              setState(() {
-                                num -= 1;
-                              });
+                              setState(() {});
                             },
                             icon: const Icon(
                               Icons.clear_outlined,
