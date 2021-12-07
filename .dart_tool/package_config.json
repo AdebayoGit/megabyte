@@ -183,7 +183,11 @@
     },
     {
       "name": "path_provider_android",
+<<<<<<< HEAD
       "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_android-2.0.8",
+=======
+      "rootUri": "file:///Users/decagon/development/flutter/.pub-cache/hosted/pub.dartlang.org/path_provider_android-2.0.9",
+>>>>>>> f23526d975cf90d2298f6c62a32b88440de1c9d0
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
@@ -297,7 +301,23 @@
     },
     {
       "name": "url_launcher",
+<<<<<<< HEAD
       "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-6.0.13",
+=======
+      "rootUri": "file:///Users/decagon/development/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher-6.0.17",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
+      "name": "url_launcher_android",
+      "rootUri": "file:///Users/decagon/development/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_android-6.0.13",
+      "packageUri": "lib/",
+      "languageVersion": "2.14"
+    },
+    {
+      "name": "url_launcher_ios",
+      "rootUri": "file:///Users/decagon/development/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_ios-6.0.13",
+>>>>>>> f23526d975cf90d2298f6c62a32b88440de1c9d0
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
@@ -321,7 +341,11 @@
     },
     {
       "name": "url_launcher_web",
+<<<<<<< HEAD
       "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_web-2.0.4",
+=======
+      "rootUri": "file:///Users/decagon/development/flutter/.pub-cache/hosted/pub.dartlang.org/url_launcher_web-2.0.5",
+>>>>>>> f23526d975cf90d2298f6c62a32b88440de1c9d0
       "packageUri": "lib/",
       "languageVersion": "2.12"
     },
@@ -339,7 +363,11 @@
     },
     {
       "name": "win32",
+<<<<<<< HEAD
       "rootUri": "file:///C:/src/flutter/.pub-cache/hosted/pub.dartlang.org/win32-2.3.0",
+=======
+      "rootUri": "file:///Users/decagon/development/flutter/.pub-cache/hosted/pub.dartlang.org/win32-2.3.1",
+>>>>>>> f23526d975cf90d2298f6c62a32b88440de1c9d0
       "packageUri": "lib/",
       "languageVersion": "2.14"
     },
@@ -368,7 +396,11 @@
       "languageVersion": "2.12"
     }
   ],
+<<<<<<< HEAD
   "generated": "2021-12-02T13:42:12.656348Z",
+=======
+  "generated": "2021-12-02T14:03:33.242361Z",
+>>>>>>> f23526d975cf90d2298f6c62a32b88440de1c9d0
   "generator": "pub",
   "generatorVersion": "2.14.4"
 }
