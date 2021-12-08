@@ -200,7 +200,6 @@ class CustomSliverAppBarDelegate extends SliverPersistentHeaderDelegate {
                   ],
                 ),
                 const FittedBox(
-                  fit: BoxFit.contain,
                   child: Text(
                     'Available Balance',
                     style: TextStyle(

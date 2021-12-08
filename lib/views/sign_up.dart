@@ -1,6 +1,10 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:megabyte/components/auth_components.dart';
 import 'package:megabyte/services/validator.dart';
+
+import 'home_page.dart';
 
 class SignUp extends StatefulWidget {
   const SignUp({Key? key}) : super(key: key);
@@ -47,7 +51,7 @@ class _SignUpState extends State<SignUp> {
                         AuthTextField(
                           controller: lastName,
                           textInputType: TextInputType.name,
-                          hintText: 'Last Nmae eg. Doe',
+                          hintText: 'Last Name eg. Doe',
                           validator: Validator.nameValidator,
                           icon: Icons.person_outlined,
                         ),
@@ -73,12 +77,7 @@ class _SignUpState extends State<SignUp> {
                         Button(
                             title: 'REGISTER',
                             press: (){
-                              showDialog(
-                                  context: context,
-                                  barrierDismissible: false,
-                                  builder: (context){
-                                return const ProgressDialog(status: 'Please Wait...',);
-                              });
+                              gotoScreen();
                             },
                             color: Colors.yellow,
                         ),
@@ -98,5 +97,20 @@ class _SignUpState extends State<SignUp> {
         ),
       ),
     );
+  }
+
+  gotoScreen(){
+    showDialog(
+        context: context,
+        barrierDismissible: false,
+        builder: (context){
+          return const ProgressDialog(status: 'Please Wait...',);
+        });
+    return Timer(const Duration(seconds: 5), () => Navigator.of(context).push(
+      createRoute(
+        HomePage(title: 'Home'),
+      ),
+    ));
+
   }
 }
