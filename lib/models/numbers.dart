@@ -7,7 +7,7 @@ class TicketNumbers extends ChangeNotifier{
 
   Set<int> keys = {};
 
-  List<Map<String, Set<int>>> ticket = [];
+  List<Map<String, Set<int>>> ticket = [{'Numbers': {}, 'Keys': {}}];
 
   void addToTicket(int number){
     numbers.add(number);
@@ -18,7 +18,6 @@ class TicketNumbers extends ChangeNotifier{
     keys.add(number);
     notifyListeners();
   }
-
 
   void removeFromTicket(int number){
     numbers.remove(number);
@@ -31,7 +30,7 @@ class TicketNumbers extends ChangeNotifier{
   }
 
   void createTicket(){
-    ticket.add({'Numbers': numbers, 'Keys': keys});
+    ticket.add({'Numbers': {}, 'Keys': {}});
     notifyListeners();
   }
 }

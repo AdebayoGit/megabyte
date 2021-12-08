@@ -146,11 +146,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         const Padding(
                           padding: EdgeInsets.symmetric(
                               vertical: 8.0, horizontal: 0.0),
-                          child: Text(
-                            '₦ 334,375,567,321',
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
+                          child: FittedBox(
+                            fit: BoxFit.contain,
+                            child: Text(
+                              '₦ 334,375,567,321',
+                              style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ),
@@ -306,15 +309,16 @@ class _HomePageWidgetState extends State<HomePageWidget> {
             Padding(
               padding: const EdgeInsets.only(bottom: 58.0),
               child: Container(
-                height: 250,
-                margin: const EdgeInsets.all(12.0),
-                decoration: BoxDecoration(
-                  borderRadius: BorderRadius.circular(25.0),
-                ),
-                child: YoutubePlayer(
+                  height: 250,
+                  margin: const EdgeInsets.all(12.0),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(25.0),
+                  ),
+                  child:
+                      Container() /*YoutubePlayer(
                   controller: _controller,
-                ),
-              ),
+                ),*/
+                  ),
             ),
           ],
         ),
