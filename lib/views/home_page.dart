@@ -90,7 +90,7 @@ class HomePageWidget extends StatefulWidget {
 
 class _HomePageWidgetState extends State<HomePageWidget> {
   final GlobalKey _parentKey = GlobalKey();
-  final YoutubePlayerController _controller = YoutubePlayerController(
+  /*final YoutubePlayerController _controller = YoutubePlayerController(
     initialVideoId: 'P4CaXBaxvIQ',
     flags: const YoutubePlayerFlags(
       autoPlay: false,
@@ -98,7 +98,7 @@ class _HomePageWidgetState extends State<HomePageWidget> {
       loop: false,
       enableCaption: true,
     ),
-  );
+  );*/
 
   @override
   Widget build(BuildContext context) {
@@ -139,11 +139,14 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                         const Padding(
                           padding: EdgeInsets.symmetric(
                               vertical: 8.0, horizontal: 0.0),
-                          child: Text(
-                            '₦ 334,375,567,321',
-                            style: TextStyle(
-                              fontSize: 24,
-                              fontWeight: FontWeight.bold,
+                          child: FittedBox(
+                            fit: BoxFit.contain,
+                            child: Text(
+                              '₦ 334,375,567,321',
+                              style: TextStyle(
+                                fontSize: 24,
+                                fontWeight: FontWeight.bold,
+                              ),
                             ),
                           ),
                         ),
@@ -304,9 +307,9 @@ class _HomePageWidgetState extends State<HomePageWidget> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(25.0),
                 ),
-                child: YoutubePlayer(
+                child: Container()/*YoutubePlayer(
                   controller: _controller,
-                ),
+                ),*/
               ),
             ),
           ],

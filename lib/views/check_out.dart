@@ -206,11 +206,16 @@ class OrdersList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
-      itemCount: 10,
-      itemBuilder: (BuildContext context, int index) {
-        return const OrderCard();
-      },
+    return Scaffold(
+      appBar: AppBar(
+
+      ),
+      body: ListView.builder(
+        itemCount: 10,
+        itemBuilder: (BuildContext context, int index) {
+          return const OrderCard();
+        },
+      ),
     );
   }
 }

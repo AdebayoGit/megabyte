@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:megabyte/components/ticket.dart';
+import 'package:megabyte/models/numbers.dart';
+import 'package:provider/provider.dart';
 
 import 'colors.dart';
 
@@ -97,11 +99,13 @@ class GamesCard extends StatelessWidget {
             children: const [
               Padding(
                 padding: EdgeInsets.all(12.0),
-                child: Text(
-                  '₦398,453,220,124',
-                  style: TextStyle(
-                    fontSize: 16,
-                    fontWeight: FontWeight.bold,
+                child: FittedBox(
+                  child: Text(
+                    '₦398,453,220,124',
+                    style: TextStyle(
+                      fontSize: 16,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                 ),
               ),
@@ -116,13 +120,15 @@ class GamesCard extends StatelessWidget {
                   bottomLeft: Radius.circular(14),
                   bottomRight: Radius.circular(14)),
             ),
-            child: const Text(
-              '00 Days 00:00:00 left',
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                fontSize: 16,
-                color: Colors.red,
-                fontWeight: FontWeight.bold,
+            child: FittedBox(
+              child: const Text(
+                '00 Days 00:00:00 left',
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                  fontSize: 16,
+                  color: Colors.red,
+                  fontWeight: FontWeight.bold,
+                ),
               ),
             ),
           ),
