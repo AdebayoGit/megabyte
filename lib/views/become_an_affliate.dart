@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
+import 'navigation_drawer.dart';
+
 class Affiliates extends StatefulWidget {
   const Affiliates({Key? key}) : super(key: key);
 
@@ -13,6 +15,7 @@ class _AffiliatesState extends State<Affiliates> {
   Widget build(BuildContext context) {
     Size _size = MediaQuery.of(context).size;
     return Scaffold(
+      drawer: NavigationDrawerWidget(),
       appBar: AppBar(
         backgroundColor: const Color(0xFF1A271F),
         title: const Text('BECOME AN AFFILIATE'),
@@ -56,7 +59,8 @@ class _AffiliatesState extends State<Affiliates> {
                   onPressed: () {
                     _launchURL();
                   },
-                  style: ElevatedButton.styleFrom(primary: Colors.transparent, elevation: 0),
+                  style: ElevatedButton.styleFrom(
+                      primary: Colors.transparent, elevation: 0),
                   child: Image.asset('assets/images/affiliate_btn.png'),
                 ),
               ),
@@ -73,6 +77,7 @@ class _AffiliatesState extends State<Affiliates> {
       'DON’T MAKE YOUR DREAMS WAIT ANY LONGER, JOIN MEGAMILLIONS NAIJA';
 
   final String _url = 'https://megamillionsnaija.com/en/features#social-share';
-  void _launchURL() async =>
-      await canLaunch(_url) ? await launch(_url) : throw 'Could not launch $_url';
+  void _launchURL() async => await canLaunch(_url)
+      ? await launch(_url)
+      : throw 'Could not launch $_url';
 }

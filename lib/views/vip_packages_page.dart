@@ -25,7 +25,7 @@ class VIPPackagesPage extends StatelessWidget {
               child: ListView(
                 children: <Widget>[
                   Container(
-                    height: 300,
+                    height: 310,
                     margin: const EdgeInsets.symmetric(
                         horizontal: 10.0, vertical: 6.0),
                     decoration: BoxDecoration(
@@ -59,15 +59,21 @@ class VIPPackagesPage extends StatelessWidget {
                                 ))
                           ],
                         ),
-                        const Text(
-                          "₦334,375,567,321",
-                          style: TextStyle(
-                              fontSize: 28.0, fontWeight: FontWeight.bold),
+                        const FittedBox(
+                          fit: BoxFit.contain,
+                          child: Text(
+                            "₦334,375,567,321",
+                            style: TextStyle(
+                                fontSize: 28.0, fontWeight: FontWeight.bold),
+                          ),
                         ),
-                        const Text(
-                          "33 ticket(s)",
-                          style: TextStyle(
-                              fontSize: 22.0, fontWeight: FontWeight.bold),
+                        const FittedBox(
+                          fit: BoxFit.fitWidth,
+                          child: Text(
+                            "33 ticket(s)",
+                            style: TextStyle(
+                                fontSize: 22.0, fontWeight: FontWeight.bold),
+                          ),
                         ),
                         const Text(
                           "11-combo lotteries",
@@ -85,18 +91,22 @@ class VIPPackagesPage extends StatelessWidget {
                             Expanded(
                               child: Column(
                                 children: const [
-                                  Text(
-                                    '₦334,375',
-                                    style: TextStyle(
-                                      decoration: TextDecoration.lineThrough,
-                                      fontSize: 18.0,
+                                  FittedBox(
+                                    child: Text(
+                                      '₦334,375',
+                                      style: TextStyle(
+                                        decoration: TextDecoration.lineThrough,
+                                        fontSize: 18.0,
+                                      ),
                                     ),
                                   ),
-                                  Text(
-                                    '₦300,375',
-                                    style: TextStyle(
-                                        fontSize: 18.0,
-                                        fontWeight: FontWeight.bold),
+                                  FittedBox(
+                                    child: Text(
+                                      '₦300,375',
+                                      style: TextStyle(
+                                          fontSize: 18.0,
+                                          fontWeight: FontWeight.bold),
+                                    ),
                                   )
                                 ],
                               ),
@@ -123,7 +133,7 @@ class VIPPackagesPage extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    height: 300,
+                    height: 310,
                     margin: const EdgeInsets.symmetric(
                         horizontal: 10.0, vertical: 6.0),
                     decoration: BoxDecoration(
@@ -221,7 +231,7 @@ class VIPPackagesPage extends StatelessWidget {
                     ),
                   ),
                   Container(
-                    height: 300,
+                    height: 310,
                     margin: const EdgeInsets.symmetric(
                         horizontal: 10.0, vertical: 6.0),
                     decoration: BoxDecoration(
@@ -255,20 +265,26 @@ class VIPPackagesPage extends StatelessWidget {
                                 ))
                           ],
                         ),
-                        const Text(
-                          "₦80,735,600,540",
-                          style: TextStyle(
-                              fontSize: 28.0, fontWeight: FontWeight.bold),
+                        const FittedBox(
+                          child: Text(
+                            "₦80,735,600,540",
+                            style: TextStyle(
+                                fontSize: 28.0, fontWeight: FontWeight.bold),
+                          ),
                         ),
-                        const Text(
-                          "20 ticket(s)",
-                          style: TextStyle(
-                              fontSize: 22.0, fontWeight: FontWeight.bold),
+                        const FittedBox(
+                          child: Text(
+                            "20 ticket(s)",
+                            style: TextStyle(
+                                fontSize: 22.0, fontWeight: FontWeight.bold),
+                          ),
                         ),
-                        const Text(
-                          "4-combo lotteries",
-                          style: TextStyle(
-                              fontSize: 22.0, fontWeight: FontWeight.bold),
+                        const FittedBox(
+                          child: Text(
+                            "4-combo lotteries",
+                            style: TextStyle(
+                                fontSize: 22.0, fontWeight: FontWeight.bold),
+                          ),
                         ),
                         const Text(
                           "4 Draws",

@@ -10,11 +10,7 @@ class MainAppBar extends AppBar {
             Row(
               children: [
                 IconButton(
-                  onPressed: () {
-                    Navigator.of(context).push(MaterialPageRoute(
-                      builder: (context) => AdvancedSliverAppBar(),
-                    ));
-                  },
+                  onPressed: () {},
                   icon: const Icon(Icons.shopping_cart),
                 ),
                 const Text(

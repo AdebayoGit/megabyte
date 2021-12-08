@@ -1,6 +1,8 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
+import 'navigation_drawer.dart';
+
 class AboutUs extends StatelessWidget {
   const AboutUs({Key? key}) : super(key: key);
 
@@ -8,6 +10,7 @@ class AboutUs extends StatelessWidget {
   Widget build(BuildContext context) {
     Size _size = MediaQuery.of(context).size;
     return Scaffold(
+      drawer: const NavigationDrawerWidget(),
       appBar: AppBar(
         backgroundColor: const Color(0xFF1A271F),
         title: const Text('About Us - MegaMillions Naija'),
@@ -15,7 +18,8 @@ class AboutUs extends StatelessWidget {
       ),
       body: Center(
         child: SingleChildScrollView(
-          padding: EdgeInsets.symmetric(horizontal: _size.width * 0.1).copyWith(bottom: _size.height * 0.1),
+          padding: EdgeInsets.symmetric(horizontal: _size.width * 0.1)
+              .copyWith(bottom: _size.height * 0.1),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -40,7 +44,8 @@ class AboutUs extends StatelessWidget {
     );
   }
 
-  final String abt = '''International Gaming & Entertainment Limited (IGE) has been licensed by the National Lottery Regulatory Commission to operate a national lottery promotional scheme, MegaMillions Naija. 
+  final String abt =
+      '''International Gaming & Entertainment Limited (IGE) has been licensed by the National Lottery Regulatory Commission to operate a national lottery promotional scheme, MegaMillions Naija. 
 
 To ensure compliance with those regulatory requirements of our license we undertake an annual financial audit and an annual audit of our operational procedures, with both reports submitted to the National Lottery Regulatory Commission. This is in addition to an auditing of customer orders against tickets purchased and the resulting draw outcomes. The entire audit process enables players, agents and suppliers to have complete confidence that business is conducted in a professional manner.
 

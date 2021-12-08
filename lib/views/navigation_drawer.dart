@@ -31,7 +31,7 @@ class NavigationDrawerWidget extends StatelessWidget {
             ),
             const SizedBox(height: 16),
             buildDrawerMenuItem(
-              pageTitle: 'Wallet',
+              pageTitle: 'Wallet/Transactions',
               icon: Icons.account_balance_wallet,
               onClicked: () => _selectedItem(context, 1),
             ),

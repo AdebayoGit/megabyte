@@ -5,6 +5,8 @@ import 'package:megabyte/models/numbers.dart';
 import 'package:megabyte/services/helpers.dart';
 import 'package:provider/provider.dart';
 
+import 'navigation_drawer.dart';
+
 class AdvancedSliverAppBar extends StatelessWidget {
   const AdvancedSliverAppBar({Key? key}) : super(key: key);
 
@@ -13,6 +15,7 @@ class AdvancedSliverAppBar extends StatelessWidget {
     final tick = Provider.of<TicketNumbers>(context);
     print(tick.ticket.isEmpty);
     return Scaffold(
+      drawer: NavigationDrawerWidget(),
       body: CustomScrollView(
         slivers: [
           const SliverPersistentHeader(
@@ -142,7 +145,6 @@ class CustomSliverAppBarDelegate extends SliverPersistentHeaderDelegate {
                 );
               },
             ),
-
           ],
         ),
       );
@@ -316,7 +318,10 @@ class CustomSearchDelegate extends SearchDelegate {
     // TODO: implement buildActions
     return [
       IconButton(
-        icon: const Icon(Icons.clear, color: Colors.red,),
+        icon: const Icon(
+          Icons.clear,
+          color: Colors.red,
+        ),
         onPressed: () {
           query = '';
         },

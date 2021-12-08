@@ -5,6 +5,7 @@ import 'package:megabyte/views/main_app_bar.dart';
 import 'package:megabyte/views/navigation_drawer.dart';
 import 'package:megabyte/views/results_page.dart';
 import 'package:megabyte/views/tickets_page.dart';
+import 'package:megabyte/views/wallet.dart';
 import 'package:youtube_player_flutter/youtube_player_flutter.dart';
 
 class HomePage extends StatefulWidget {
@@ -22,12 +23,13 @@ class _HomePageState extends State<HomePage> {
     HomePageWidget(),
     ResultsPage(),
     TicketsPage(),
+    AdvancedSliverAppBar()
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: NavigationDrawerWidget(),
+      drawer: const NavigationDrawerWidget(),
       appBar: MainAppBar(
         context: context,
       ),
@@ -49,6 +51,7 @@ class _HomePageState extends State<HomePage> {
           primaryColor: lightGreen,
         ),
         child: BottomNavigationBar(
+          type: BottomNavigationBarType.fixed,
           unselectedItemColor: Colors.white,
           elevation: 16.0,
           items: const <BottomNavigationBarItem>[
@@ -57,12 +60,16 @@ class _HomePageState extends State<HomePage> {
               label: 'Home',
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.receipt),
+              icon: Icon(Icons.task_alt),
               label: 'Results',
             ),
             BottomNavigationBarItem(
               icon: Icon(Icons.local_activity),
               label: 'Tickets',
+            ),
+            BottomNavigationBarItem(
+              icon: Icon(Icons.credit_card),
+              label: 'Transactions',
             ),
           ],
           currentIndex: _selectedIndex,
