@@ -3,34 +3,15 @@ import 'package:flutter/foundation.dart';
 
 class TicketNumbers extends ChangeNotifier{
 
-  Set<int> numbers = {};
+  List<Map<String, Set<int>>> ticket = [];
 
-  Set<int> keys = {};
 
-  List<Map<String, Set<int>>> ticket = [{'Numbers': {}, 'Keys': {}}];
-
-  void addToTicket(int number){
-    numbers.add(number);
-    notifyListeners();
-  }
-
-  void addToKeys(int number){
-    keys.add(number);
-    notifyListeners();
-  }
-
-  void removeFromTicket(int number){
-    numbers.remove(number);
-    notifyListeners();
-  }
-
-  void removeFromKeys(int number){
-    keys.remove(number);
-    notifyListeners();
-  }
-
-  void createTicket(){
+  createTicket(){
     ticket.add({'Numbers': {}, 'Keys': {}});
+  }
+
+  remove(int index){
+    ticket.removeAt(index);
     notifyListeners();
   }
 }

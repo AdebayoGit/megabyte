@@ -10,6 +10,7 @@ class GamesCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final tick = Provider.of<TicketNumbers>(context);
     final ButtonStyle _style = TextButton.styleFrom(
       primary: Theme.of(context).colorScheme.onPrimary,
       backgroundColor: yellow,
@@ -56,7 +57,7 @@ class GamesCard extends StatelessWidget {
                                 icon: Icons.person,
                                 onClicked: () {
                                   Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => const Ticket(),
+                                    builder: (context) => Ticket(tick: tick),
                                   ));
                                 },
                               ),
@@ -66,7 +67,7 @@ class GamesCard extends StatelessWidget {
                                 icon: Icons.people,
                                 onClicked: () {
                                   Navigator.of(context).push(MaterialPageRoute(
-                                    builder: (context) => const Ticket(),
+                                    builder: (context) => Ticket(tick: tick),
                                   ));
                                 }),
                           ],

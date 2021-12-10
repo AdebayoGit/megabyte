@@ -1,13 +1,16 @@
+import 'dart:math';
+
 import 'package:flutter/material.dart';
 import 'package:megabyte/models/numbers.dart';
 import 'package:megabyte/services/helpers.dart';
 import 'package:megabyte/views/check_out.dart';
 import 'package:provider/provider.dart';
-
 import 'auth_components.dart';
 
 class Ticket extends StatefulWidget {
-  const Ticket({Key? key}) : super(key: key);
+  Ticket({Key? key, required this.tick}) : super(key: key);
+
+  final TicketNumbers tick;
 
   @override
   State<Ticket> createState() => _TicketState();
@@ -15,266 +18,237 @@ class Ticket extends StatefulWidget {
 
 class _TicketState extends State<Ticket> {
   int num = 1;
+  late bool value;
+
+  late final TicketNumbers tick;
 
   @override
   void initState() {
     // TODO: implement initState
+    tick = widget.tick;
+    tick.createTicket();
     super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     Size _size = MediaQuery.of(context).size;
-    final tick = Provider.of<TicketNumbers>(context);
     print(tick.ticket);
-    return Scaffold(
-      appBar: AppBar(
-        actions: [
-          TextButton(
-            onPressed: () {
-              Navigator.of(context).push(
-                createRoute(
-                  OrdersList(),
+    return WillPopScope(
+      onWillPop: () async {
+        await showDialog(
+            context: context,
+            builder: (context) => AlertDialog(
+                    title: Text('Notice!'),
+                    content: Text(
+                        'If you go back your selection will be discarded...'),
+                    actions: <Widget>[
+                      TextButton(
+                          child: Text(
+                            'Go Back',
+                            style: TextStyle(
+                              color: Colors.green,
+                            ),
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              value = true;
+                            });
+                            tick.ticket.clear();
+                            return Navigator.of(context).pop();
+                          }),
+                      TextButton(
+                          child: Text(
+                            'Stay',
+                            style: TextStyle(
+                              color: Colors.red,
+                            ),
+                          ),
+                          onPressed: () {
+                            setState(() {
+                              value = false;
+                            });
+                            print(value);
+                            return Navigator.of(context).pop();
+                          }),
+                    ]));
+        if (value) {
+          return true;
+        } else {
+          return false;
+        }
+      },
+      child: Scaffold(
+        appBar: AppBar(
+          actions: [
+            TextButton(
+              onPressed: () {
+                List<Map<String, Set<int>>> toRemove = [];
+                tick.ticket.forEach((element) {
+                  int keys = element['Keys']!.length;
+                  int num = element['Numbers']!.length;
+                  if (num < 5 || keys < 5) {
+                    ScaffoldMessenger.of(context).showSnackBar(
+                        SnackBar(content: Text('Please fill all ticket')));
+                  } else{
+                    Navigator.of(context).push(
+                      createRoute(
+                        TicketCard(),
+                      ),
+                    );
+                  }
+                });
+              },
+              child: Text(
+                'CheckOut',
+                style: TextStyle(
+                  color: Colors.white,
                 ),
-              );
-            },
-            child: Text(
-              'CheckOut',
-              style: TextStyle(
-                color: Colors.white,
               ),
             ),
-          ),
-        ],
-      ),
-      floatingActionButton: FloatingActionButton(
-        backgroundColor: const Color(0xFF1A271F),
-        onPressed: () {
-          print(tick.ticket);
-          setState(() {
-            num += 1;
-            //tick.createTicket();
-          });
-        },
-        child: const Icon(
-          Icons.add,
-          color: Colors.yellow,
+          ],
         ),
-      ),
-      body: SafeArea(
-        child: GridView.builder(
-          gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-            crossAxisCount: 2,
-            mainAxisSpacing: 4,
-            mainAxisExtent: 430,
+        floatingActionButton: FloatingActionButton(
+          backgroundColor: const Color(0xFF1A271F),
+          onPressed: () {
+            //Todo Remove print
+            print(tick.ticket);
+            setState(() {
+              tick.createTicket();
+            });
+          },
+          child: const Icon(
+            Icons.add,
+            color: Colors.yellow,
           ),
-          itemCount: num,
-          itemBuilder: (BuildContext context, int index) {
-            //tick.createTicket();
-            return Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Container(
-                  color: Colors.green[900]!,
-                  child: Row(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      IconButton(
-                        //Todo select randomly
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.autorenew_outlined,
-                          color: Colors.white,
+        ),
+        body: SafeArea(
+          child: GridView.builder(
+            gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+              crossAxisCount: 2,
+              mainAxisSpacing: 4,
+              mainAxisExtent: 430,
+            ),
+            itemCount: tick.ticket.length,
+            itemBuilder: (BuildContext context, int index) {
+              return Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Container(
+                    color: Colors.green[900]!,
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        IconButton(
+                          //Todo select randomly
+                          onPressed: () {
+                            setState(() {
+                              generateTicket(index);
+                            });
+                          },
+                          icon: const Icon(
+                            Icons.autorenew_outlined,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                      IconButton(
-                        //Todo delete ticket
-                        onPressed: () {},
-                        icon: const Icon(
-                          Icons.delete_outlined,
-                          color: Colors.white,
-                        ),
-                      ),
-                      IconButton(
-                        onPressed: () {
+                        IconButton(
                           //Todo clear ticket
-                          setState(() {
-                            num -= 1;
-                          });
-                          print(index);
-                        },
-                        icon: const Icon(
-                          Icons.clear_outlined,
-                          color: Colors.red,
+                          onPressed: () {
+                            setState(() {
+                              tick.ticket[index]['Numbers']!.clear();
+                              tick.ticket[index]['Keys']!.clear();
+                            });
+                          },
+                          icon: const Icon(
+                            Icons.delete_outlined,
+                            color: Colors.white,
+                          ),
                         ),
-                      ),
-                    ],
-                  ),
-                ),
-                Container(
-                  padding: const EdgeInsets.all(0),
-                  decoration: BoxDecoration(
-                    color: const Color(0xFF1A271F),
-                    border: Border.all(
-                      color: Colors.green[900]!,
-                      width: 2,
+                        IconButton(
+                          onPressed: () {
+                            //Todo delete ticket
+                            if(tick.ticket.length == 1){
+                              ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text('Cannot delete final ticket')));
+                            } else{
+                              setState(() {
+                                tick.ticket.removeAt(index);
+                              });
+                            }
+                          },
+                          icon: const Icon(
+                            Icons.clear_outlined,
+                            color: Colors.red,
+                          ),
+                        ),
+                      ],
                     ),
                   ),
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: [
-                      MainNumbers(
-                        mainNums: TicketNumbers(),
-                        index: index,
+                  Container(
+                    //padding: const EdgeInsets.all(0),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFF1A271F),
+                      border: Border.all(
+                        color: Colors.green[900]!,
+                        width: 2,
                       ),
-                      Keys(
-                        keyNums: TicketNumbers(),
-                        index: index,
-                      ),
-                      FittedBox(
-                        child: Container(
-                          margin: EdgeInsets.symmetric(
-                              horizontal: _size.width * 0.0025),
+                    ),
+                    child: Column(
+                      //crossAxisAlignment: CrossAxisAlignment.stretch,
+                      children: [
+                        MainNumbers(
+                          index: index,
+                        ),
+                        Keys(
+                          index: index,
+                        ),
+                        Container(
+                          margin: EdgeInsets.symmetric(horizontal: _size.width * 0.0025),
                           padding: EdgeInsets.symmetric(
-                              horizontal: _size.width * 0.06),
+                              horizontal: _size.width * 0.025, vertical: _size.height * 0.008),
                           color: Colors.yellow,
-                          child: Text(
-                            'Price: ${Helpers.getCurrency}0.00',
-                            textAlign: TextAlign.center,
-                            style: const TextStyle(
-                              fontWeight: FontWeight.bold,
-                              color: Colors.red,
-                              fontSize: 20,
-                              backgroundColor: Colors.yellow,
+                          width: double.infinity,
+                          child: FittedBox(
+                            child: Text(
+                              'Price: ${Helpers.getCurrency}0.000000000',
+                              textAlign: TextAlign.center,
+                              style: const TextStyle(
+                                fontWeight: FontWeight.bold,
+                                color: Colors.red,
+                                fontSize: 20,
+                                backgroundColor: Colors.yellow,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    ],
+                      ],
+                    ),
                   ),
-                ),
-              ],
-            );
-          },
+                ],
+              );
+            },
+          ),
         ),
       ),
     );
   }
-}
 
-class Numbers extends StatefulWidget {
-  const Numbers({Key? key, required this.index}) : super(key: key);
+  void generateTicket(int index){
+    //final int num = 1 + Random.secure().nextInt(70 - 1 + 1);
+    Set<int> keyNums = {};
+    Set<int> mainNums = {};
 
-  final int index;
-
-  @override
-  _NumbersState createState() => _NumbersState();
-}
-
-class _NumbersState extends State<Numbers> {
-  late final int index;
-
-  @override
-  void initState() {
-    // TODO: implement initState
-    index = widget.index;
-    super.initState();
-  }
-
-  @override
-  Widget build(BuildContext context) {
-    Size _size = MediaQuery.of(context).size;
-    return Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        Container(
-          color: Colors.green[900]!,
-          child: Row(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              IconButton(
-                //Todo select randomly
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.autorenew_outlined,
-                  color: Colors.white,
-                ),
-              ),
-              IconButton(
-                //Todo delete ticket
-                onPressed: () {},
-                icon: const Icon(
-                  Icons.delete_outlined,
-                  color: Colors.white,
-                ),
-              ),
-              IconButton(
-                onPressed: () {
-                  //Todo clear ticket
-                  /*setState(() {
-                          num -= 1;
-                        });*/
-                  print(index);
-                },
-                icon: const Icon(
-                  Icons.clear_outlined,
-                  color: Colors.red,
-                ),
-              ),
-            ],
-          ),
-        ),
-        Container(
-          padding: const EdgeInsets.all(0),
-          decoration: BoxDecoration(
-            color: const Color(0xFF1A271F),
-            border: Border.all(
-              color: Colors.green[900]!,
-              width: 2,
-            ),
-          ),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              MainNumbers(
-                mainNums: TicketNumbers(),
-                index: index,
-              ),
-              Keys(
-                keyNums: TicketNumbers(),
-                index: index,
-              ),
-              FittedBox(
-                child: Container(
-                  margin:
-                      EdgeInsets.symmetric(horizontal: _size.width * 0.0025),
-                  padding: EdgeInsets.symmetric(horizontal: _size.width * 0.06),
-                  color: Colors.yellow,
-                  child: Text(
-                    'Price: ${Helpers.getCurrency}0.00',
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                      fontWeight: FontWeight.bold,
-                      color: Colors.red,
-                      fontSize: 20,
-                      backgroundColor: Colors.yellow,
-                    ),
-                  ),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ],
-    );
+    while(keyNums.length < 5 || mainNums.length < 5){
+      keyNums.add(1 + Random.secure().nextInt(27 - 1 + 1));
+      mainNums.add(1 + Random.secure().nextInt(70 - 1 + 1));
+    }
+      tick.ticket[index]['Keys'] = keyNums;
+      tick.ticket[index]['Numbers'] = mainNums;
   }
 }
 
 class MainNumbers extends StatefulWidget {
-  const MainNumbers({Key? key, required this.mainNums, required this.index})
-      : super(key: key);
+  const MainNumbers({Key? key, required this.index}) : super(key: key);
 
-  final TicketNumbers mainNums;
   final int index;
 
   @override
@@ -282,15 +256,10 @@ class MainNumbers extends StatefulWidget {
 }
 
 class _MainNumbersState extends State<MainNumbers> {
-  Color color = Colors.white;
-  Color textColor = Colors.green;
-
-  late final TicketNumbers mainNums;
   late final int ind;
   @override
   void initState() {
     super.initState();
-    mainNums = widget.mainNums;
     ind = widget.index;
   }
 
@@ -303,17 +272,16 @@ class _MainNumbersState extends State<MainNumbers> {
       padding: EdgeInsets.symmetric(
           horizontal: _size.width * 0.025, vertical: _size.height * 0.01),
       decoration: const BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.only(
-            topLeft: Radius.circular(10), topRight: Radius.circular(10)),
-        /*boxShadow: const [
+          color: Colors.white,
+          borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(10), topRight: Radius.circular(10)),
+          boxShadow: const [
             BoxShadow(
                 offset: Offset(2, 2),
                 blurRadius: 6,
                 spreadRadius: 1,
                 color: Colors.black26)
-          ]*/
-      ),
+          ]),
       child: GridView.builder(
           padding: const EdgeInsets.all(2),
           physics: const NeverScrollableScrollPhysics(),
@@ -325,58 +293,43 @@ class _MainNumbersState extends State<MainNumbers> {
           ),
           itemCount: 69,
           itemBuilder: (context, index) {
+            Set<int> nums = tick.ticket[ind]['Numbers']!;
             return Number(
               number: index + 1,
               shape: BoxShape.rectangle,
-              color: mainNums.numbers.contains(index + 1)
+              color: nums.contains(index + 1)
                   ? Colors.yellowAccent[400]
                   : Colors.white,
-              textColor: mainNums.numbers.contains(index + 1)
-                  ? Colors.white
-                  : Colors.green,
+              textColor: nums.contains(index + 1) ? Colors.white : Colors.green,
               press: () {
-                //getColor(tick.ticket[index]['Numbers']!, index + 1);
-                tick.ticket[ind] = {'Keys': mainNums.keys};
-                if (mainNums.numbers.length == 5 &&
-                    mainNums.numbers.contains(index + 1)) {
-                  mainNums.removeFromTicket(index + 1);
+                if (nums.length == 5 && nums.contains(index + 1)) {
+                  nums.remove(index + 1);
                   setState(() {});
-                } else if (mainNums.numbers.length == 5 &&
-                    !mainNums.numbers.contains(index + 1)) {
+                } else if (nums.length == 5 && !nums.contains(index + 1)) {
                   ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                     content: Text('Ticket is complete'),
                     duration: Duration(milliseconds: 200),
                   ));
                 } else {
-                  if (mainNums.numbers.contains(index + 1)) {
-                    mainNums.removeFromKeys(index + 1);
+                  if (nums.contains(index + 1)) {
+                    nums.remove(index + 1);
                     setState(() {});
                   } else {
-                    mainNums.addToTicket(index + 1);
+                    nums.add(index + 1);
                     setState(() {});
                   }
                 }
-                print(mainNums.numbers);
+
+                print(tick.ticket);
               },
             );
           }),
     );
   }
-
-  getColor(Set<int> numbers, int index) {
-    if (numbers.isNotEmpty && numbers.contains(index)) {
-      setState(() {
-        color = Colors.yellow[600]!;
-        textColor = Colors.white;
-      });
-    }
-  }
 }
 
 class Keys extends StatefulWidget {
-  const Keys({Key? key, required this.keyNums, required this.index})
-      : super(key: key);
-  final TicketNumbers keyNums;
+  const Keys({Key? key, required this.index}) : super(key: key);
   final int index;
 
   @override
@@ -384,12 +337,11 @@ class Keys extends StatefulWidget {
 }
 
 class _KeysState extends State<Keys> {
-  late final TicketNumbers keyNums;
   late final int ind;
+
   @override
   void initState() {
     super.initState();
-    keyNums = widget.keyNums;
     ind = widget.index;
   }
 
@@ -402,17 +354,15 @@ class _KeysState extends State<Keys> {
       margin: EdgeInsets.symmetric(horizontal: _size.width * 0.0025),
       padding: EdgeInsets.symmetric(
           horizontal: _size.width * 0.025, vertical: _size.height * 0.01),
-      decoration: BoxDecoration(
-        color: Colors.green[900],
-        //borderRadius: BorderRadius.circular(10),
-        /*boxShadow: const [
+      decoration: BoxDecoration(color: Colors.green[900],
+          //borderRadius: BorderRadius.circular(10),
+          boxShadow: const [
             BoxShadow(
                 offset: Offset(2, 2),
                 blurRadius: 6,
                 spreadRadius: 1,
                 color: Colors.black26)
-          ]*/
-      ),
+          ]),
       child: GridView.builder(
         padding: const EdgeInsets.all(2),
         physics: const NeverScrollableScrollPhysics(),
@@ -424,37 +374,34 @@ class _KeysState extends State<Keys> {
         ),
         itemCount: 26,
         itemBuilder: (context, index) {
+          Set<int> nums = tick.ticket[ind]['Keys']!;
           return Number(
             number: index + 1,
             shape: BoxShape.circle,
             borderWidth: 0,
-            color: keyNums.keys.contains(index + 1)
-                ? Colors.redAccent[400]
-                : Colors.white,
-            textColor:
-                keyNums.keys.contains(index + 1) ? Colors.white : Colors.green,
+            color:
+                nums.contains(index + 1) ? Colors.redAccent[400] : Colors.white,
+            textColor: nums.contains(index + 1) ? Colors.white : Colors.green,
             press: () {
-              tick.ticket[ind] = {'Keys': keyNums.keys};
-              if (keyNums.keys.length == 5 &&
-                  keyNums.keys.contains(index + 1)) {
-                keyNums.removeFromKeys(index + 1);
+              if (nums.length == 5 && nums.contains(index + 1)) {
+                nums.remove(index + 1);
                 setState(() {});
-              } else if (keyNums.keys.length == 5 &&
-                  !keyNums.keys.contains(index + 1)) {
+              } else if (nums.length == 5 && !nums.contains(index + 1)) {
                 ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
                   content: Text('Ticket is complete'),
                   duration: Duration(milliseconds: 200),
                 ));
               } else {
-                if (keyNums.keys.contains(index + 1)) {
-                  keyNums.removeFromKeys(index + 1);
+                if (nums.contains(index + 1)) {
+                  nums.remove(index + 1);
                   setState(() {});
                 } else {
-                  keyNums.addToKeys(index + 1);
+                  nums.add(index + 1);
                   setState(() {});
                 }
               }
-              print(keyNums.keys);
+
+              print(tick.ticket);
             },
           );
         },
