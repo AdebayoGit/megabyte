@@ -183,44 +183,47 @@ class _TicketState extends State<Ticket> {
                       ],
                     ),
                   ),
-                  Container(
-                    //padding: const EdgeInsets.all(0),
-                    decoration: BoxDecoration(
-                      color: const Color(0xFF1A271F),
-                      border: Border.all(
-                        color: Colors.green[900]!,
-                        width: 2,
+                  Expanded(
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF1A271F),
+                        border: Border.all(
+                          color: Colors.green[900]!,
+                          width: 2,
+                        ),
                       ),
-                    ),
-                    child: Column(
-                      //crossAxisAlignment: CrossAxisAlignment.stretch,
-                      children: [
-                        MainNumbers(
-                          index: index,
-                        ),
-                        Keys(
-                          index: index,
-                        ),
-                        Container(
-                          margin: EdgeInsets.symmetric(horizontal: _size.width * 0.0025),
-                          padding: EdgeInsets.symmetric(
-                              horizontal: _size.width * 0.025, vertical: _size.height * 0.008),
-                          color: Colors.yellow,
-                          width: double.infinity,
-                          child: FittedBox(
-                            child: Text(
-                              'Price: ${Helpers.getCurrency}0.000000000',
-                              textAlign: TextAlign.center,
-                              style: const TextStyle(
-                                fontWeight: FontWeight.bold,
-                                color: Colors.red,
-                                fontSize: 20,
-                                backgroundColor: Colors.yellow,
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          MainNumbers(
+                            index: index,
+                          ),
+                          Expanded(
+                            child: Keys(
+                              index: index,
+                            ),
+                          ),
+                          Container(
+                            margin: EdgeInsets.symmetric(horizontal: _size.width * 0.0025),
+                            padding: EdgeInsets.symmetric(
+                                horizontal: _size.width * 0.025, vertical: _size.height * 0.008),
+                            color: Colors.yellow,
+                            width: double.infinity,
+                            child: FittedBox(
+                              child: Text(
+                                'Price: ${Helpers.getCurrency}0.000000000',
+                                textAlign: TextAlign.center,
+                                style: const TextStyle(
+                                  fontWeight: FontWeight.bold,
+                                  color: Colors.red,
+                                  fontSize: 20,
+                                  backgroundColor: Colors.yellow,
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
                 ],
